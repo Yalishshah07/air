@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air University — Islamabad & Regional Campuses</title>
+
+  <!-- Load Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Load Minimalist Editorial Typography: Plus Jakarta Sans & Newsreader -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0F2342',
+            gold: '#B48A3E',
+            canvas: '#FAF9F6',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Newsreader', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Subtle Warm Editorial Lighting Harmony & Crisp High-DPI Rendering */
+    .editorial-photo {
+      filter: contrast(1.03) saturate(0.96) brightness(1.01);
+      image-rendering: -webkit-optimize-contrast;
+      backface-visibility: hidden;
+    }
+
+    /* Upper-Facade Focal Alignment for Tall Architectural Photos (e.g., FMC) */
+    .focal-upper {
+      object-position: center 26%;
+    }
+
+    @keyframes pulseBeacon {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.45;
+        transform: scale(0.82);
+      }
+    }
+
+    .drone-beacon {
+      animation: pulseBeacon 2.2s ease-in-out infinite;
+    }
+
+    /* Department Card & Hover-Zoom Mechanics */
+    .dept-card {
+      transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dept-img {
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .dept-title {
+      display: inline-block;
+      transform-origin: left center;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+      cursor: pointer;
+    }
+
+    /* Trigger zoom on both department name and photograph when hovering the department name */
+    .dept-card.name-hovered,
+    .dept-card:has(.dept-title:hover) {
+      border-color: #B48A3E;
+      box-shadow: 0 14px 30px -12px rgba(15, 35, 66, 0.12);
+    }
+
+    .dept-card.name-hovered .dept-img,
+    .dept-card:has(.dept-title:hover) .dept-img {
+      transform: scale(1.07);
+    }
+
+    .dept-card.name-hovered .dept-title,
+    .dept-title:hover {
+      transform: scale(1.045);
+      color: #B48A3E;
+    }
+
+    /* Smooth View Transition */
+    .view-fade {
+      animation: viewFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes viewFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-navy selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- 1. MINIMALIST STICKY HEADER                                           -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- Minimalist Geometric Wings Emblem & Wordmark -->
+      <a href="#campuses" onclick="navigateToMain(event)" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-9 h-9 rounded-lg bg-navy flex items-center justify-center border border-gold/40 transition-colors group-hover:border-gold">
+          <svg viewBox="0 0 36 36" class="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Minimalist Geometric Aerospace Wings -->
+            <path d="M5 18.5C9.5 16.5 13.5 17.5 18 21.5C22.5 17.5 26.5 16.5 31 18.5C26.5 21 22.5 22.5 18 24C13.5 22.5 9.5 21 5 18.5Z" fill="#B08D57"/>
+            <path d="M8 14.5C11.5 13 14.5 14 18 17.5C21.5 14 24.5 13 28 14.5C24.5 16.5 21.5 17.8 18 19C14.5 17.8 11.5 16.5 8 14.5Z" fill="#FFFFFF"/>
+            <circle cx="18" cy="10" r="1.75" fill="#B08D57"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-lg sm:text-xl font-semibold tracking-tight text-navy leading-none">
+            Air University
+          </span>
+          <span class="text-[10px] uppercase tracking-[0.18em] text-slate-400 mt-1 hidden sm:block">
+            Islamabad · Pakistan
+          </span>
+        </div>
+      </a>
+
+      <!-- Minimalist Navigation Links -->
+      <nav class="flex items-center gap-5 sm:gap-8 text-xs sm:text-sm font-medium text-slate-600">
+        <a href="#e9-flagship" onclick="navigateToMain(event, 'e9-flagship')" class="hover:text-navy transition-colors">
+          E-9 Flagship
+        </a>
+        <a href="#all-campuses" onclick="navigateToMain(event, 'all-campuses')" class="hover:text-navy transition-colors">
+          Campuses
+        </a>
+        <button onclick="openApplyModal('Islamabad Main Campus (Sector E-9)')" class="px-4 py-2 rounded-lg bg-navy text-white text-xs sm:text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer">
+          Apply Now
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 2. MAIN OPENING PAGE VIEW (#main-view)                                -->
+  <!-- ===================================================================== -->
+  <main id="main-view" class="view-fade">
+
+    <!-- =================================================================== -->
+    <!-- TOP DRONE VIEW VIDEO HEADER (PASTE YOUR VIDEO FILE PATH BELOW)      -->
+    <!-- =================================================================== -->
+    <section
+      id="drone-header"
+      aria-label="Aerial Drone Video of Air University E-9 Campus"
+      class="relative w-full h-[400px] sm:h-[470px] lg:h-[530px] bg-navy overflow-hidden border-b border-slate-200"
+    >
+      <!-- PASTE YOUR DRONE VIDEO PATH IN THE src="..." ATTRIBUTE BELOW -->
+      <video
+        id="drone-video"
+        src="VIDEO.mp4"
+        poster="e9.jpg"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover object-center editorial-photo"
+      ></video>
+
+      <!-- Subtle Minimalist Editorial Vignette Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/45 to-navy/35 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(15,35,66,0.55)_100%)] pointer-events-none"></div>
+
+      <!-- Drone HUD & Institutional Overlay Content -->
+      <div class="relative z-10 max-w-6xl mx-auto h-full px-5 sm:px-8 py-6 sm:py-8 flex flex-col justify-between pointer-events-none">
+        
+        <!-- Top Telemetry Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-navy/75 backdrop-blur-md border border-white/15 text-[11px] font-medium tracking-wider text-slate-200">
+            <span class="w-2 h-2 rounded-full bg-gold drone-beacon"></span>
+            <span>AERIAL DRONE FOOTAGE · SECTOR E-9, ISLAMABAD</span>
+          </div>
+
+          <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy/65 backdrop-blur-md border border-white/10 text-[11px] font-mono text-slate-300">
+            <span>33.7145° N, 73.0247° E</span>
+            <span class="text-white/30">|</span>
+            <span>MARGALLA FOOTHILLS</span>
+          </div>
+        </div>
+
+        <!-- Bottom Editorial Headline & Video Playback Controls -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="max-w-2xl pointer-events-auto">
+            <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold mb-2.5">
+              Federally Chartered University · Est. 2002 · Islamabad, Pakistan
+            </p>
+            <h1 class="font-serif text-3xl sm:text-4xl lg:text-[44px] font-semibold text-white tracking-tight leading-tight">
+              Academic Excellence &amp; Aerospace Innovation Across Pakistan
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-200/90 mt-3 max-w-xl leading-relaxed">
+              Explore Air University’s flagship seat in Sector E-9 at the foothills of the Margalla Hills, alongside our four specialized regional campuses.
+            </p>
+          </div>
+
+          <!-- Interactive Video Play/Pause Control & Campus Jump -->
+          <div class="flex items-center gap-3 pointer-events-auto shrink-0">
+            <button
+              id="drone-toggle-btn"
+              type="button"
+              onclick="toggleDroneVideo()"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/12 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white text-xs font-semibold tracking-wide transition-colors cursor-pointer"
+            >
+              <span id="drone-toggle-icon" aria-hidden="true">❚❚</span>
+              <span id="drone-toggle-label">Pause Video</span>
+            </button>
+
+            <a
+              href="#e9-flagship"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gold hover:bg-amber-600 text-white text-xs font-semibold tracking-wide transition-colors"
+            >
+              <span>Explore Campuses</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-6 sm:pt-8 pb-24">
+
+      <!-- ================================================================= -->
+      <!-- OPENING FEATURE: E-9 CAMPUS (LEFT CARD + RIGHT EDITORIAL INFO)    -->
+      <!-- ================================================================= -->
+      <section id="e9-flagship" aria-labelledby="e9-heading" class="py-12 sm:py-16 border-b border-slate-200 scroll-mt-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+          <!-- LEFT SIDE: Clean, Minimalist Campus Card -->
+          <div class="lg:col-span-5">
+            <article class="bg-white rounded-xl border border-slate-200/90 overflow-hidden shadow-xs hover:border-slate-300 transition-colors">
+              <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                <img
+                  src="C:/Users/2605257/Downloads/e9/images (1).jpg"
+                  alt="Air University E-9 Main Campus Aerial View with Margalla Hills in Islamabad"
+                  decoding="async"
+                  class="w-full h-full object-cover object-center editorial-photo"
+                  onerror="this.src='https://placehold.co/1200x900/0F2342/FFFFFF?text=Air+University+E-9+Campus'"
+                >
+                <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-md bg-white/95 backdrop-blur-xs text-[11px] font-semibold tracking-wide text-navy border border-slate-200/80">
+                  Sector E-9, Islamabad
+                </span>
+              </div>
+
+              <div class="p-6 sm:p-7">
+                <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-gold mb-2">
+                  <span>Principal Seat · Flagship</span>
+                  <span>Est. 2002</span>
+                </div>
+                <h2 id="e9-heading" class="font-serif text-xl sm:text-2xl font-semibold text-navy mb-2.5">
+                  E-9 Campus (Main Campus)
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                  Located at the scenic foothills of the Margalla Hills, serving as the central academic, administrative, and research headquarters of Air University.
+                </p>
+
+                <!-- Quick Campus Facts -->
+                <div class="grid grid-cols-3 gap-3 py-3.5 px-4 rounded-lg bg-canvas border border-slate-200/70 mb-6 text-center">
+                  <div>
+                    <span class="block text-sm font-bold text-navy">06</span>
+                    <span class="text-[11px] text-slate-500">Faculties</span>
+                  </div>
+                  <div class="border-x border-slate-200">
+                    <span class="block text-sm font-bold text-navy">40+</span>
+                    <span class="text-[11px] text-slate-500">Programs</span>
+                  </div>
+                  <div>
+                    <span class="block text-sm font-bold text-navy">HEC W</span>
+                    <span class="text-[11px] text-slate-500">Category</span>
+                  </div>
+                </div>
+
+                <!-- Learn More Link Inside Card -->
+                <a
+                  href="#campus/e9"
+                  onclick="openCampusDetail(event, 'e9')"
+                  class="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold transition-colors group"
+                >
+                  <span>Learn More</span>
+                  <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- RIGHT SIDE: Structured Editorial Information about E-9 Main Campus -->
+          <div class="lg:col-span-7 flex flex-col justify-center space-y-6 lg:pt-2">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+                Flagship Academic &amp; Research Headquarters
+              </span>
+              <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-navy mt-2 leading-snug">
+                At the Foothills of the Margalla Hills
+              </h3>
+            </div>
+
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Established under a Federal Charter in 2002 under the patronage of the Pakistan Air Force, the <strong>Sector E-9 Main Campus</strong> is the intellectual core of Air University. Its purpose-built academic blocks, specialized engineering laboratories, and serene green courtyards foster focused scholarship and interdisciplinary discovery.
+            </p>
+
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              The campus houses nationally recognized research centers—including the <strong>National Center for Cyber Security (NCCS)</strong> and dedicated Artificial Intelligence and Robotics labs—alongside the Central Digital Library providing round-the-clock access to international IEEE, ACM, and Springer research repositories.
+            </p>
+
+            <!-- Clean Two-Column Highlight Points -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4 border-t border-slate-200">
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-navy mb-1.5">
+                  National Accreditations
+                </h4>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                  Fully accredited by HEC, Pakistan Engineering Council (PEC), NCEAC for computing, and NBEAC for business education.
+                </p>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-navy mb-1.5">
+                  Campus Environment
+                </h4>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                  Purpose-built auditoriums, sports facilities, student innovation societies, and direct industry linkages in Islamabad.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- ALL REMAINING CAMPUSES (SAME LEFT CARD + RIGHT INFO STRUCTURE)    -->
+      <!-- ================================================================= -->
+      <section id="all-campuses" aria-label="Regional Campuses" class="pt-14 sm:pt-16 space-y-14 sm:space-y-16 scroll-mt-20">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-4 border-b border-slate-200">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+              Nationwide Footprint
+            </span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-navy mt-1">
+              Constituent &amp; Regional Campuses
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Select <span class="font-semibold text-navy">Learn More →</span> on any campus to view its departments.
+          </p>
+        </div>
+
+        <!-- Container dynamically populated with the 4 remaining campuses in identical Left-Card + Right-Info layout -->
+        <div id="regional-campuses-list" class="space-y-14 sm:space-y-16"></div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 3. DEDICATED CAMPUS DETAIL PAGE VIEW (#campus-view)                   -->
+  <!-- ===================================================================== -->
+  <section id="campus-view" class="hidden view-fade pb-24">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-8 sm:pt-12">
+
+      <!-- Prominent Back Navigation -->
+      <div class="mb-8">
+        <a
+          href="#campuses"
+          onclick="navigateToMain(event)"
+          class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-navy transition-colors group"
+        >
+          <span aria-hidden="true" class="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+          <span>Back to All Campuses</span>
+        </a>
+      </div>
+
+      <!-- Campus Detail Header & Architectural Hero -->
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden mb-14">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          
+          <div class="lg:col-span-6 p-7 sm:p-10 lg:p-12 flex flex-col justify-between">
+            <div>
+              <span id="detail-badge" class="inline-block text-xs font-semibold uppercase tracking-[0.18em] text-gold mb-3">
+                Sector E-9, Islamabad
+              </span>
+              <h1 id="detail-title" class="font-serif text-3xl sm:text-4xl font-semibold text-navy leading-tight mb-4">
+                E-9 Campus (Main Campus)
+              </h1>
+              <p id="detail-lead" class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                Flagship seat of Air University.
+              </p>
+            </div>
+
+            <!-- Key Campus Statistics -->
+            <div id="detail-stats" class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 relative min-h-[280px] sm:min-h-[360px] bg-slate-100">
+            <img
+              id="detail-hero-img"
+              src=""
+              alt="Campus Architecture"
+              class="w-full h-full object-cover"
+            >
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Academic Departments Section -->
+      <div class="mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-6 mb-10 border-b border-slate-200">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+              Faculties &amp; Laboratories
+            </span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-navy mt-1">
+              Academic Departments
+            </h2>
+          </div>
+          <p class="text-xs text-slate-500">
+            Hover over a department name to inspect its facilities and degree tracks.
+          </p>
+        </div>
+
+        <!-- Departments Grid -->
+        <div id="detail-departments-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- End of Campus Page: Minimalist Admissions Banner with "Apply Now →" -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="max-w-xl">
+          <span class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+            Admissions Open
+          </span>
+          <h3 id="detail-cta-heading" class="font-serif text-2xl sm:text-3xl font-semibold text-navy mt-1.5 mb-2">
+            Begin Your Academic Journey at E-9 Campus
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Submit your online application for Undergraduate, Master’s, or PhD programs. Merit and need-based financial assistance is available for eligible candidates.
+          </p>
+        </div>
+
+        <a
+          id="detail-apply-link"
+          href="#apply"
+          onclick="triggerCampusApply(event)"
+          class="shrink-0 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-navy hover:bg-slate-800 text-white text-sm font-semibold transition-all group"
+        >
+          <span>Apply Now</span>
+          <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. MINIMALIST INSTITUTIONAL FOOTER                                    -->
+  <!-- ===================================================================== -->
+  <footer class="bg-white border-t border-slate-200 py-10">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-2.5">
+        <span class="font-serif font-semibold text-navy text-sm">Air University</span>
+        <span>·</span>
+        <span>Service Road E-9 / E-8, Islamabad</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#e9-flagship" onclick="navigateToMain(event, 'e9-flagship')" class="hover:text-navy transition-colors">E-9 Campus</a>
+        <a href="#all-campuses" onclick="navigateToMain(event, 'all-campuses')" class="hover:text-navy transition-colors">All Campuses</a>
+        <button onclick="openApplyModal('Islamabad Main Campus (Sector E-9)')" class="hover:text-navy transition-colors cursor-pointer">Admissions</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- 5. MINIMALIST ADMISSION APPLICATION MODAL                             -->
+  <!-- ===================================================================== -->
+  <div id="apply-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/50 backdrop-blur-xs">
+    <div class="bg-white rounded-2xl max-w-md w-full border border-slate-200 shadow-2xl overflow-hidden view-fade">
+      <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold">Online Admissions</span>
+          <h3 class="font-serif text-xl font-semibold text-navy mt-0.5">Application Inquiry</h3>
+        </div>
+        <button onclick="closeApplyModal()" aria-label="Close modal" class="p-1.5 rounded-lg text-slate-400 hover:text-navy hover:bg-slate-100 transition-colors cursor-pointer">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form id="apply-form" onsubmit="submitApplication(event)" class="p-6 space-y-4">
+        <div>
+          <label for="apply-campus" class="block text-xs font-semibold text-navy mb-1.5">Selected Campus</label>
+          <select id="apply-campus" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm text-slate-800 bg-canvas focus:outline-none focus:border-navy">
+            <option value="Islamabad Main Campus (Sector E-9)">Islamabad Main Campus (Sector E-9)</option>
+            <option value="Aerospace & Aviation Campus (Kamra)">Aerospace & Aviation Campus (Kamra)</option>
+            <option value="Multan Campus (Multan)">Multan Campus (Multan)</option>
+            <option value="Kharian Campus (Kharian)">Kharian Campus (Kharian)</option>
+            <option value="Islamabad Campus (Sector H-11)">Islamabad Campus (Sector H-11)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="apply-level" class="block text-xs font-semibold text-navy mb-1.5">Degree Level</label>
+          <select id="apply-level" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm text-slate-800 bg-canvas focus:outline-none focus:border-navy">
+            <option value="Undergraduate (BS)">Undergraduate (BS — 4 Years)</option>
+            <option value="Graduate (MS / MPhil)">Graduate (MS / MPhil — 2 Years)</option>
+            <option value="Doctoral (PhD)">Doctoral (PhD)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="apply-name" class="block text-xs font-semibold text-navy mb-1.5">Applicant Full Name</label>
+          <input id="apply-name" type="text" required placeholder="e.g., Ayesha Tariq" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-navy">
+        </div>
+
+        <div>
+          <label for="apply-email" class="block text-xs font-semibold text-navy mb-1.5">Email Address</label>
+          <input id="apply-email" type="email" required placeholder="applicant@example.com" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-navy">
+        </div>
+
+        <div id="apply-feedback" class="hidden p-3.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 leading-relaxed"></div>
+
+        <div class="pt-2 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeApplyModal()" class="px-4 py-2.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-slate-800 text-white text-xs font-semibold transition-colors cursor-pointer">
+            Submit Application →
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 6. CAMPUS DATA & INTERACTIVE NAVIGATION SCRIPT                        -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * Comprehensive structured dataset for all 5 Air University campuses,
+     * preserving local campus/department photography and editorial summaries.
+     */
+    const CAMPUSES = {
+      e9: {
+        id: 'e9',
+        name: 'E-9 Campus (Main Campus)',
+        shortName: 'E-9 Main Campus',
+        locationBadge: 'Sector E-9, Islamabad',
+        tag: 'Principal Seat · Flagship',
+        established: 'Est. 2002',
+        heroImage: 'C:/Users/2605257/Downloads/e9/images (1).jpg',
+        lead: 'Situated at the foothills of the Margalla Hills in Islamabad, the Sector E-9 Main Campus serves as Air University’s flagship seat of higher learning, housing six faculties and national centers of excellence in computing, aerospace, cyber security, and medical sciences.',
+        stats: [
+          { value: '06', label: 'Academic Faculties' },
+          { value: '40+', label: 'Degree Programs' },
+          { value: 'NCSA', label: 'National Cyber Hub' }
+        ],
+        departments: [
+          {
+            name: 'Faculty of Computing & AI',
+            programs: 'BS · MS · PhD — CS, Artificial Intelligence, Data Science & Software Engineering',
+            image: 'C:/Users/2605257/Downloads/e9/computer science department.jpg',
+            description: 'Offers NCEAC-accredited BS, MS, and PhD degree programs in Computer Science, Artificial Intelligence, Data Science, and Software Engineering supported by high-performance computing and machine intelligence laboratories.'
+          },
+          {
+            name: 'Department of Mechanical & Aerospace Engineering',
+            programs: 'BS · MS · PhD — Aeronautical, Aerospace & Mechanical Engineering',
+            image: 'C:/Users/2605257/Downloads/e9/aerospace.jpg',
+            description: 'Dedicated to Aeronautical, Aerospace, and Mechanical Engineering education featuring subsonic aerodynamics wind tunnels, propulsion test facilities, CAD/CAM suites, and structural mechanics laboratories.'
+          },
+          {
+            name: 'National Cyber Security Academy (NCSA)',
+            programs: 'BS · MS — Cyber Security, Digital Forensics & Network Defense',
+            image: 'C:/Users/2605257/Downloads/e9/ncsa.jpg',
+            description: 'Advances national information assurance research and specialized training in Cyber Security, Digital Forensics, Cryptography, and Network Defense through dedicated Security Operations Center (SOC) facilities.'
+          },
+          {
+            name: 'Fazaia Medical College (Faculty of Medical Sciences)',
+            programs: 'MBBS · Allied Health Sciences · Clinical Medical Education',
+            image: 'C:/Users/2605257/Downloads/e9/fmc.jpg',
+            focalUpper: true,
+            description: 'Delivers PMC-recognized MBBS, Allied Health Sciences, and clinical medical education at Sector E-9, integrating modern anatomy and pathology laboratories with teaching hospital clinical rotations.'
+          }
+        ]
+      },
+
+      kamra: {
+        id: 'kamra',
+        name: 'Aerospace & Aviation Campus (Kamra)',
+        shortName: 'Kamra Campus',
+        locationBadge: 'Kamra, District Attock',
+        tag: 'Aviation & Aerospace Hub',
+        established: 'Est. 2018',
+        heroImage: 'C:/Users/2605257/Downloads/kamra/main.jpg',
+        cardSummary: 'Strategically positioned adjacent to the Pakistan Aeronautical Complex (PAC), dedicated to aerospace, avionics, and aviation engineering.',
+        editorialHeading: 'Direct Integration with Pakistan’s Aviation Industry',
+        editorialP1: 'Located in Kamra alongside the Pakistan Aeronautical Complex (PAC), the Aerospace & Aviation Campus offers an unmatched industrial learning ecosystem where students train directly alongside national aircraft manufacturing and maintenance facilities.',
+        editorialP2: 'Equipped with subsonic wind tunnels, flight simulation suites, and avionics testing benches, the campus prepares aerospace engineers, avionics specialists, and aviation managers for global aerospace careers.',
+        highlights: [
+          { title: 'Industrial Immersion', text: 'Direct academic and R&D collaboration with PAC Kamra factories and aviation engineers.' },
+          { title: 'Specialized Labs', text: 'Aerodynamics wind tunnels, propulsion test cells, and aircraft structures laboratories.' }
+        ],
+        stats: [
+          { value: 'PAC', label: 'Industry Linkage' },
+          { value: '04', label: 'Core Departments' },
+          { value: 'PEC', label: 'Accredited Tracks' }
+        ],
+        lead: 'Adjacent to the Pakistan Aeronautical Complex in Kamra, this specialized campus delivers hands-on Aerospace Engineering, Avionics, and Aviation Management education.',
+        departments: [
+          {
+            name: 'Department of Aerospace Engineering',
+            programs: 'BS Aerospace Engineering · MS Aerospace Engineering',
+            image: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1600&q=90',
+            description: 'Focused on aerodynamics, flight mechanics, aircraft structural design, and propulsion systems with wind tunnel testing facilities.'
+          },
+          {
+            name: 'Department of Avionics Engineering',
+            programs: 'BS Avionics Engineering · MS Avionics',
+            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=90',
+            description: 'Radar signal processing, flight control electronics, airborne navigation systems, and embedded aerospace computing.'
+          },
+          {
+            name: 'Department of Aviation Management',
+            programs: 'BS Aviation Management · BS Computer Science',
+            image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=90',
+            description: 'Airport operations, airline fleet logistics, air traffic safety standards, and aviation supply chain governance.'
+          }
+        ]
+      },
+
+      multan: {
+        id: 'multan',
+        name: 'Multan Campus (Multan)',
+        shortName: 'Multan Campus',
+        locationBadge: 'Multan, Punjab',
+        tag: 'Southern Punjab Center',
+        established: 'Est. 2011',
+        heroImage: 'C:/Users/2605257/Downloads/New folder/newcampusaumc18.webp',
+        cardSummary: 'Serving Southern Punjab with federally chartered excellence in Computer Science, Software Engineering, Business Administration, and Mathematics.',
+        editorialHeading: 'Expanding Higher Education Excellence in Southern Punjab',
+        editorialP1: 'Established in 2011, the Air University Multan Campus brings federal-standard engineering, computing, and management education to the historic heart of Southern Punjab.',
+        editorialP2: 'With modern computing laboratories, seminar halls, and dedicated faculty mentorship, the campus empowers regional youth to excel in Pakistan’s software export, banking, and corporate sectors.',
+        highlights: [
+          { title: 'Computing & Software', text: 'High-demand BS Computer Science and Software Engineering programs with modern coding labs.' },
+          { title: 'Regional Leadership', text: 'Merit scholarships and industry placement support tailored for Southern Punjab graduates.' }
+        ],
+        stats: [
+          { value: '2011', label: 'Year Established' },
+          { value: '04', label: 'Academic Wings' },
+          { value: '100%', label: 'HEC Recognized' }
+        ],
+        lead: 'Air University’s flagship regional seat in Southern Punjab, offering accredited undergraduate and graduate programs in computing, management sciences, and mathematics.',
+        departments: [
+          {
+            name: 'Department of Computer Science & IT',
+            programs: 'BS Computer Science · BS Software Engineering · BS Information Technology',
+            image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=90',
+            description: 'Full-stack software engineering studios, cloud computing labs, and artificial intelligence research groups.'
+          },
+          {
+            name: 'Department of Business Administration',
+            programs: 'BBA (Hons) · BS Accounting & Finance · MBA',
+            image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=90',
+            description: 'Financial market simulations, corporate governance case studies, and regional entrepreneurship mentorship.'
+          },
+          {
+            name: 'Department of Mathematics',
+            programs: 'BS Mathematics · MS Mathematics',
+            image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1600&q=90',
+            description: 'Pure and applied mathematical analysis, numerical computing, and statistical modeling.'
+          }
+        ]
+      },
+
+      kharian: {
+        id: 'kharian',
+        name: 'Kharian Campus (Kharian)',
+        shortName: 'Kharian Campus',
+        locationBadge: 'Kharian, District Gujrat',
+        tag: 'Central Punjab Campus',
+        established: 'Est. 2021',
+        heroImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=90',
+        cardSummary: 'A focused, modern academic center in Central Punjab delivering specialized programs in Computer Science, Information Technology, and Management.',
+        editorialHeading: 'Focused Academic Mentorship in Central Punjab',
+        editorialP1: 'Located in Kharian, District Gujrat, this purpose-organized campus serves students across the Jhelum, Gujrat, and Mandi Bahauddin corridor with high-demand degrees in computing and business.',
+        editorialP2: 'Small cohort sizes ensure personalized faculty guidance, hands-on programming workshops, and seamless access to Air University’s central digital library and career network.',
+        highlights: [
+          { title: 'Student-Centric Ratio', text: 'Close faculty mentorship and interactive lab sessions designed for deep technical mastery.' },
+          { title: 'Digital Connectivity', text: 'Full access to Air University’s central e-library, LMS, and inter-campus competitions.' }
+        ],
+        stats: [
+          { value: '03', label: 'Core Departments' },
+          { value: 'Modern', label: 'Computing Labs' },
+          { value: 'HEC W', label: 'Charter Quality' }
+        ],
+        lead: 'Serving Central Punjab with contemporary programs in Computer Science, Information Technology, and Management Sciences.',
+        departments: [
+          {
+            name: 'Department of Computing',
+            programs: 'BS Computer Science · BS Information Technology',
+            image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=90',
+            description: 'Modern programming, database systems, networking, and web engineering laboratories.'
+          },
+          {
+            name: 'Department of Management Sciences',
+            programs: 'BBA · BS Business Analytics',
+            image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=90',
+            description: 'Modern business administration, organizational strategy, and data-driven management education.'
+          },
+          {
+            name: 'Department of Basic Sciences',
+            programs: 'Applied Mathematics & English Communication',
+            image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1600&q=90',
+            description: 'Quantitative reasoning, scientific foundations, and professional communication skills.'
+          }
+        ]
+      },
+
+      h11: {
+        id: 'h11',
+        name: 'Islamabad Campus (Sector H-11)',
+        shortName: 'H-11 Campus',
+        locationBadge: 'Sector H-11, Islamabad',
+        tag: 'Health & Allied Sciences',
+        established: 'Expansion Campus',
+        heroImage: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=90',
+        cardSummary: 'Air University’s dedicated medical and allied health sciences complex in Sector H-11, home to Fazaia Medical College and clinical research.',
+        editorialHeading: 'Advancing Medical Education & Allied Health Research',
+        editorialP1: 'Situated in Sector H-11, Islamabad, this modern expansion campus anchors Air University’s healthcare and life sciences mission through Fazaia Medical College (FMC) and the Faculty of Health Sciences.',
+        editorialP2: 'Featuring high-fidelity clinical simulation suites, pathology and anatomy laboratories, and teaching hospital affiliations, the H-11 campus trains compassionate clinicians and biomedical researchers.',
+        highlights: [
+          { title: 'Fazaia Medical College', text: 'PMC-recognized MBBS program supported by modern clinical skill centers and teaching hospitals.' },
+          { title: 'Allied Health Sciences', text: 'Specialized degree tracks in Nursing, Medical Lab Technology, and Rehabilitation Sciences.' }
+        ],
+        stats: [
+          { value: 'FMC', label: 'Medical College' },
+          { value: 'PMC', label: 'Clinical Standards' },
+          { value: 'H-11', label: 'Islamabad Sector' }
+        ],
+        lead: 'Dedicated to medical education, nursing, and allied health sciences in Sector H-11, Islamabad, integrating clinical simulation with teaching hospital practice.',
+        departments: [
+          {
+            name: 'Fazaia Medical College (MBBS)',
+            programs: 'MBBS · Basic & Clinical Medical Sciences',
+            image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=90',
+            description: 'State-of-the-art anatomy museums, histopathology laboratories, and clinical skills simulation centers.'
+          },
+          {
+            name: 'Department of Allied Health Sciences',
+            programs: 'BS Medical Lab Technology · Doctor of Physical Therapy (DPT)',
+            image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1600&q=90',
+            description: 'Diagnostic laboratory sciences, physical rehabilitation clinics, and biomedical instrumentation.'
+          },
+          {
+            name: 'College of Nursing',
+            programs: 'BS Nursing (Generic) · Post-RN BSN',
+            image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=90',
+            description: 'Evidence-based clinical nursing practice, critical care simulation, and community health leadership.'
+          }
+        ]
+      }
+    };
+
+    let activeCampusId = 'e9';
+
+    /**
+     * Renders the 4 remaining campuses on the main opening page using the exact
+     * same Left-Card (with "Learn More →" link) + Right-Info editorial split.
+     */
+    function renderRegionalCampuses() {
+      const container = document.getElementById('regional-campuses-list');
+      const regionalIds = ['kamra', 'multan', 'kharian', 'h11'];
+
+      container.innerHTML = regionalIds.map((id, index) => {
+        const campus = CAMPUSES[id];
+        const isLast = index === regionalIds.length - 1;
+
+        return `
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start ${isLast ? '' : 'pb-14 sm:pb-16 border-b border-slate-200'}">
+            
+            <!-- LEFT SIDE: Minimalist Campus Card with "Learn More →" -->
+            <div class="lg:col-span-5">
+              <div class="bg-white rounded-xl border border-slate-200/90 overflow-hidden shadow-xs hover:border-slate-300 transition-colors">
+                <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                  <img
+                    src="${campus.heroImage}"
+                    alt="${campus.name}"
+                    decoding="async"
+                    class="w-full h-full object-cover object-center editorial-photo"
+                    onerror="this.src='https://placehold.co/1200x900/0F2342/FFFFFF?text=${encodeURIComponent(campus.shortName)}'"
+                  >
+                  <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-md bg-white/95 backdrop-blur-xs text-[11px] font-semibold tracking-wide text-navy border border-slate-200/80">
+                    ${campus.locationBadge}
+                  </span>
+                </div>
+
+                <div class="p-6 sm:p-7">
+                  <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-gold mb-2">
+                    <span>${campus.tag}</span>
+                    <span>${campus.established}</span>
+                  </div>
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-navy mb-2.5">
+                    ${campus.name}
+                  </h3>
+                  <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    ${campus.cardSummary}
+                  </p>
+
+                  <!-- Learn More Link Inside Card -->
+                  <a
+                    href="#campus/${campus.id}"
+                    onclick="openCampusDetail(event, '${campus.id}')"
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold transition-colors group"
+                  >
+                    <span>Learn More</span>
+                    <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT SIDE: Clean Editorial Information -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-5 lg:pt-2">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+                  ${campus.locationBadge}
+                </span>
+                <h4 class="font-serif text-2xl sm:text-[26px] font-semibold text-navy mt-1.5 leading-snug">
+                  ${campus.editorialHeading}
+                </h4>
+              </div>
+
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                ${campus.editorialP1}
+              </p>
+
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                ${campus.editorialP2}
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4 border-t border-slate-200">
+                ${campus.highlights.map(item => `
+                  <div>
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-navy mb-1.5">
+                      ${item.title}
+                    </h5>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                      ${item.text}
+                    </p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+          </article>
+        `;
+      }).join('');
+    }
+
+    /**
+     * Switches from the opening main page to the dedicated Campus Detail Page
+     * displaying department photographs, descriptions, hover-zoom names, and Apply Now CTA.
+     */
+    function openCampusDetail(event, campusId) {
+      if (event) event.preventDefault();
+      const campus = CAMPUSES[campusId] || CAMPUSES.e9;
+      activeCampusId = campus.id;
+
+      // Populate Campus Header
+      document.getElementById('detail-badge').textContent = `${campus.locationBadge} · ${campus.tag}`;
+      document.getElementById('detail-title').textContent = campus.name;
+      document.getElementById('detail-lead').textContent = campus.lead;
+
+      const heroImg = document.getElementById('detail-hero-img');
+      heroImg.src = campus.heroImage;
+      heroImg.alt = campus.name;
+      heroImg.decoding = 'async';
+      heroImg.className = 'w-full h-full object-cover object-center editorial-photo';
+      heroImg.onerror = function() {
+        this.src = `https://placehold.co/1200x900/0F2342/FFFFFF?text=${encodeURIComponent(campus.shortName)}`;
+      };
+
+      // Populate Key Stats
+      document.getElementById('detail-stats').innerHTML = campus.stats.map(s => `
+        <div>
+          <span class="block font-serif text-xl sm:text-2xl font-semibold text-navy">${s.value}</span>
+          <span class="text-xs text-slate-500">${s.label}</span>
+        </div>
+      `).join('');
+
+      // Populate Departments with Hover Zoom on Department Name
+      const deptGrid = document.getElementById('detail-departments-grid');
+      deptGrid.className = campus.departments.length === 4
+        ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
+        : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+
+      deptGrid.innerHTML = campus.departments.map(dept => `
+        <article class="dept-card bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col">
+          <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+            <img
+              src="${dept.image}"
+              alt="${dept.name}"
+              decoding="async"
+              class="dept-img w-full h-full object-cover ${dept.focalUpper ? 'focal-upper' : 'object-center'} editorial-photo"
+              onerror="this.src='https://placehold.co/1200x900/0F2342/FFFFFF?text=${encodeURIComponent(dept.name)}'"
+            >
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-gold mb-2">
+              ${dept.programs}
+            </span>
+            <h3
+              onmouseenter="this.closest('.dept-card').classList.add('name-hovered')"
+              onmouseleave="this.closest('.dept-card').classList.remove('name-hovered')"
+              class="dept-title font-serif text-lg sm:text-xl font-semibold text-navy mb-2.5 leading-snug"
+            >
+              ${dept.name}
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              ${dept.description}
+            </p>
+          </div>
+        </article>
+      `).join('');
+
+      // Update End-of-Page Apply CTA Heading
+      document.getElementById('detail-cta-heading').textContent = `Apply to ${campus.shortName}`;
+
+      // Toggle Views & Scroll to Top
+      document.getElementById('main-view').classList.add('hidden');
+      const detailView = document.getElementById('campus-view');
+      detailView.classList.remove('hidden');
+      detailView.classList.remove('view-fade');
+      void detailView.offsetWidth;
+      detailView.classList.add('view-fade');
+
+      window.history.replaceState(null, '', `#campus/${campus.id}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Returns smoothly to the opening Main Page View
+     */
+    function navigateToMain(event, targetSectionId) {
+      if (event) event.preventDefault();
+
+      document.getElementById('campus-view').classList.add('hidden');
+      const mainView = document.getElementById('main-view');
+      mainView.classList.remove('hidden');
+
+      window.history.replaceState(null, '', targetSectionId ? `#${targetSectionId}` : '#');
+
+      if (targetSectionId) {
+        const el = document.getElementById(targetSectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Opens the minimalist Admissions Modal pre-filled with the active campus
+     */
+    function triggerCampusApply(event) {
+      if (event) event.preventDefault();
+      const campus = CAMPUSES[activeCampusId] || CAMPUSES.e9;
+      openApplyModal(campus.name);
+    }
+
+    function openApplyModal(campusName) {
+      const modal = document.getElementById('apply-modal');
+      const select = document.getElementById('apply-campus');
+      const feedback = document.getElementById('apply-feedback');
+
+      if (campusName) {
+        select.value = campusName;
+      }
+      feedback.classList.add('hidden');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeApplyModal() {
+      const modal = document.getElementById('apply-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitApplication(event) {
+      event.preventDefault();
+      const name = document.getElementById('apply-name').value.trim();
+      const campus = document.getElementById('apply-campus').value;
+      const level = document.getElementById('apply-level').value;
+      const feedback = document.getElementById('apply-feedback');
+
+      feedback.textContent = `Thank you, ${name}. Your ${level} admission inquiry for ${campus} has been recorded. Our admissions office will email your prospectus and test schedule shortly.`;
+      feedback.classList.remove('hidden');
+    }
+
+    /**
+     * Toggles play/pause on the top aerial drone background video
+     */
+    function toggleDroneVideo() {
+      const video = document.getElementById('drone-video');
+      const label = document.getElementById('drone-toggle-label');
+      const icon = document.getElementById('drone-toggle-icon');
+      if (!video) return;
+
+      if (video.paused) {
+        video.play();
+        if (label) label.textContent = 'Pause Video';
+        if (icon) icon.textContent = '❚❚';
+      } else {
+        video.pause();
+        if (label) label.textContent = 'Play Video';
+        if (icon) icon.textContent = '▶';
+      }
+    }
+
+    // Initialize Page & Support Direct Hash Links (e.g. #campus/e9)
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRegionalCampuses();
+
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#campus/')) {
+        const id = hash.replace('#campus/', '');
+        if (CAMPUSES[id]) {
+          openCampusDetail(null, id);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
